@@ -1,11 +1,10 @@
 <div class="row">
   <div class="col-xs-12">
-    <div class="card-deck">
-      <div
+    <div class="row">
+      <app-product-thumbnail class="col-lg-3 col-md-4 col-xs-12 mb-2"
         *ngFor="let product of products"
         [product]="product"
-        app-product-thumbnail
-      ></div>
+      ></app-product-thumbnail>
     </div>
   </div>
 </div>
