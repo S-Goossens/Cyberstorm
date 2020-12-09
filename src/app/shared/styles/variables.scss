@@ -1,0 +1,20 @@
+:root {
+  // Colors
+  --primary: #262626;
+  --secondary: #0d0d0d;
+  --highLightColor: #a61c1c;
+  --textColor: #f2f2f2;
+  --highLightTextColor: #f24c3d;
+
+  // Navbar
+  --navbar-height: 100px;
+  --navbar-link-size: 1.1rem;
+  --navbar-li-padding: 15px;
+  --navbar-border: 1px solid var(--textColor);
+  --navbar-top-margin: 25px;
+  --navbar-brand-size: 100px;
+  --navbar-inactive: #f2f2f275;
+  --navbar-padding: 10%;
+
+  --semibold: 500;
+}
