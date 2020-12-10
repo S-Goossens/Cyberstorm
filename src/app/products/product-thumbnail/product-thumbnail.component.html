@@ -1,7 +1,7 @@
-<div class="card">
+<a routerLink="{{ product.id }}" class="card">
   <div class="card-body">
     <img class="card-img-top" src="{{ product.imgPath }}" />
     <h5 class="card-title">{{ product.name }}</h5>
-    <h5 class="card-text price">{{ product.price | currency: 'EUR'}}</h5>
+    <h5 class="card-text price">{{ product.price | currency: "EUR" }}</h5>
   </div>
-</div>
+</a>

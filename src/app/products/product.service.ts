@@ -61,4 +61,10 @@ export class ProductService {
   getProducts() {
     return this.products.slice();
   }
+
+  getProduct(id: string) {
+    return this.products.find((product) => {
+      return product.id === id;
+    });
+  }
 }
