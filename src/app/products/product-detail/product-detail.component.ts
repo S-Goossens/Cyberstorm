@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ShoppingCartService } from 'src/app/shopping-cart/shopping-cart.service';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
@@ -9,7 +10,8 @@ import { ProductService } from '../product.service';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss'],
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
+  private productSubscription: Subscription;
   product: Product;
   id: string;
 
@@ -22,11 +24,19 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      this.product = this.productService.getProduct(this.id);
+      this.productSubscription = this.productService
+        .getProduct(this.id)
+        .subscribe((response) => {
+          this.product = response[0];
+        });
     });
   }
 
   public onAddToCart() {
     this.shoppingCartService.add(this.product);
+  }
+
+  ngOnDestroy() {
+    this.productSubscription.unsubscribe();
   }
 }
