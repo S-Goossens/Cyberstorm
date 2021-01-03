@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
@@ -8,7 +8,7 @@ import { ProductService } from '../product.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
   private productSubscription: Subscription;
   products: Product[];
 
@@ -21,5 +21,9 @@ export class ProductListComponent implements OnInit {
         this.products = response;
         console.log(this.products);
       });
+  }
+
+  ngOnDestroy() {
+    this.productSubscription.unsubscribe();
   }
 }

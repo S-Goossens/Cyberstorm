@@ -40,13 +40,19 @@
             />
           </form>
         </li>
-        <li class="nav-item" routerLinkActive="active">
+        <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
           <a class="nav-link">Account</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a routerLink="cart" class="nav-link"
             >Cart ({{ amountOfProductsInCart }})</a
           >
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="!isAuthenticated">
+          <a routerLink="auth" class="nav-link">Login</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
+          <a (click)="onLogout()" class="nav-link">Logout</a>
         </li>
       </ul>
     </div>

@@ -1,1 +1,66 @@
-<p>registration works!</p>
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="email">E-Mail</label>
+    <input
+      type="email"
+      id="email"
+      class="form-control"
+      formControlName="email"
+    />
+  </div>
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input
+      type="text"
+      id="firstName"
+      class="form-control"
+      formControlName="firstName"
+    />
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input
+      type="text"
+      id="lastName"
+      class="form-control"
+      formControlName="lastName"
+    />
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      class="form-control"
+      formControlName="password"
+    />
+  </div>
+  <div class="form-group">
+    <label for="password">Confirm Password</label>
+    <input
+      type="password"
+      id="confirmPassword"
+      class="form-control"
+      formControlName="confirmPassword"
+    />
+  </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="
+      registrationForm.errors?.mismatch &&
+      registrationForm.controls['confirmPassword'].touched
+    "
+  >
+    Passwords don't match
+  </div>
+
+  <div>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="!registrationForm.valid"
+    >
+      Register
+    </button>
+  </div>
+</form>
