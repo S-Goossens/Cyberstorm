@@ -14,4 +14,10 @@ export class RequestService {
   sendGetRequest(endpoint: string) {
     return this.http.get(this.URL.concat(endpoint), { responseType: 'json' });
   }
+
+  sendPostRequest(endpoint: string, post_data: Object) {
+    return this.http.post(this.URL.concat(endpoint), post_data, {
+      responseType: 'json',
+    });
+  }
 }

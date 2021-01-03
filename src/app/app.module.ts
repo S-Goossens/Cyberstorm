@@ -10,6 +10,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ShoppingCartListComponent } from './shopping-cart/shopping-cart-list/shopping-cart-list.component';
 import { ShoppingCartListItemComponent } from './shopping-cart/shopping-cart-list/shopping-cart-list-item/shopping-cart-list-item.component';
 import { RequestService } from './shared/services/request.service';
+import { AuthModule } from './auth/auth.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,13 @@ import { RequestService } from './shared/services/request.service';
     ShoppingCartListComponent,
     ShoppingCartListItemComponent,
   ],
-  imports: [HttpClientModule, BrowserModule, ProductsModule, AppRoutingModule],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    ProductsModule,
+    AuthModule,
+    AppRoutingModule,
+  ],
   providers: [RequestService],
   bootstrap: [AppComponent],
 })
