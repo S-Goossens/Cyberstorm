@@ -114,10 +114,17 @@ export class AuthService {
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
-    if (!errorRes.error || !errorRes.error.error) {
+    console.log(errorRes);
+    if (!errorRes.error || !errorRes.error.message) {
       return throwError(errorMessage);
     }
-    console.log(errorRes);
+    switch (errorRes.status) {
+      case 401:
+        errorMessage = 'Wrong credentials';
+        break;
+      default:
+        break;
+    }
     return throwError(errorMessage);
   }
 }

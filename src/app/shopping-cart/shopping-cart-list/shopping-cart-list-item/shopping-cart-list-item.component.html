@@ -1,4 +1,5 @@
-<div>
-  {{ product.name }}
+<div *ngIf="shoppingCartLine">
+  {{ shoppingCartLine.product.name }}
+  {{ shoppingCartLine.quantity }}
   <button class="btn btn-danger" (click)="removeFromCart()">Delete</button>
 </div>

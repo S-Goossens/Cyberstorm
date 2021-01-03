@@ -11,20 +11,15 @@ import { ShoppingCartListComponent } from './shopping-cart/shopping-cart-list/sh
 import { ShoppingCartListItemComponent } from './shopping-cart/shopping-cart-list/shopping-cart-list-item/shopping-cart-list-item.component';
 import { RequestService } from './shared/services/request.service';
 import { AuthModule } from './auth/auth.module';
-import { CommonModule } from '@angular/common';
+import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    ShoppingCartComponent,
-    ShoppingCartListComponent,
-    ShoppingCartListItemComponent,
-  ],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
     ProductsModule,
+    ShoppingCartModule,
     AuthModule,
     AppRoutingModule,
   ],

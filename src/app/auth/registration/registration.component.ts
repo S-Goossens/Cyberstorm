@@ -10,6 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
+  error: string = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -28,6 +29,7 @@ export class RegistrationComponent implements OnInit {
       },
       (errorMessage) => {
         console.log(errorMessage);
+        this.error = errorMessage;
       }
     );
   }

@@ -6,6 +6,10 @@
     <div *ngIf="!isLoginMode">
       <app-registration></app-registration>
     </div>
-    <a (click)="onSwitchMode()">{{ isLoginMode ? "Registration" : "login"}}</a>
+    <a (click)="onSwitchMode()">{{
+      isLoginMode
+        ? "No account yet? Register"
+        : "Do you have an account already? Login"
+    }}</a>
   </div>
 </div>

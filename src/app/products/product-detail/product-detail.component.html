@@ -1,4 +1,29 @@
-<div>
-  {{ product.name }}
-  <a [routerLink]="['cart']" (click)="onAddToCart()">Add to cart</a>
+<div class="row" *ngIf="product">
+  <div class="col-sm-12 col-md-7">
+    <img src="{{ product.imgPath }}" alt="{{ product.name }}" />
+  </div>
+  <div class="col-sm-12 col-md-5">
+    <h4>
+      {{ product.name }}
+    </h4>
+    <h5 class="price">
+      {{ product.price | currency: "EUR" }}
+    </h5>
+    <p>
+      {{ product.description }}
+    </p>
+    <p>
+      <a
+        [routerLink]="['/cart']"
+        (click)="onAddToCart()"
+        class="btn btn-success"
+        >Add to cart</a
+      >
+    </p>
+    <ul>
+      <li>Free returns within 30 days of purchase</li>
+      <li>2 years warranty on all tech</li>
+      <li>Ordered before 23:59? Delivered tommorrow</li>
+    </ul>
+  </div>
 </div>

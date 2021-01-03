@@ -2,9 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { throwError } from 'rxjs';
 import { AuthService } from '../auth.service';
-import { User } from '../user.model';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +10,7 @@ import { User } from '../user.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  error: string = null;
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
@@ -30,7 +29,7 @@ export class LoginComponent implements OnInit {
       },
       (errorMessage) => {
         console.log(errorMessage);
-        // this.error = errorMessage;
+        this.error = errorMessage;
       }
     );
   }

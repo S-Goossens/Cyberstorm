@@ -2,7 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Product } from '../products/product.model';
-import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
+import {
+  ShoppingCartLine,
+  ShoppingCartService,
+} from '../shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-header',
@@ -26,7 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.isAuthenticated = !!user;
     });
     this.shoppingCartSubscription = this.shoppingCartService.productsInCartChanged.subscribe(
-      (products: Product[]) => {
+      (products: ShoppingCartLine[]) => {
         this.amountOfProductsInCart = products.length;
       }
     );

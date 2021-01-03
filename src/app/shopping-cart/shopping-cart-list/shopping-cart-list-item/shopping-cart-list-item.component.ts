@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/products/product.model';
+import {
+  ShoppingCartLine,
+  ShoppingCartService,
+} from '../../shopping-cart.service';
 
 @Component({
   selector: 'app-shopping-cart-list-item',
@@ -7,14 +11,17 @@ import { Product } from 'src/app/products/product.model';
   styleUrls: ['./shopping-cart-list-item.component.scss'],
 })
 export class ShoppingCartListItemComponent implements OnInit {
-  @Input() public product: Product;
+  @Input() public shoppingCartLine: ShoppingCartLine;
   @Input() public index: number;
 
-  constructor() {}
+  constructor(private shoppingCartService: ShoppingCartService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.shoppingCartLine);
+  }
 
   public removeFromCart() {
     console.log('verwijder');
+    this.shoppingCartService.delete(this.index);
   }
 }
