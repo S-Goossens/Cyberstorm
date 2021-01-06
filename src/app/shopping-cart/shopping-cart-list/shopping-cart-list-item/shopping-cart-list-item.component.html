@@ -1,7 +1,11 @@
 <div *ngIf="shoppingCartLine">
   <p>
     {{ shoppingCartLine.product.name }}
-    <input type="number" [(ngModel)]="shoppingCartLine.quantity" />
+    <input
+      type="number"
+      [(ngModel)]="shoppingCartLine.quantity"
+      (change)="onQuantityChange()"
+    />
     {{
       shoppingCartLine.quantity * shoppingCartLine.product.price
         | currency: "EUR"

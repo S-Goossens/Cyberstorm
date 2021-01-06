@@ -11,15 +11,21 @@ import { ShoppingCartLine, ShoppingCartService } from './shopping-cart.service';
 export class ShoppingCartComponent implements OnInit, OnDestroy {
   public shoppingCartLines: ShoppingCartLine[] = [];
   public subscription: Subscription;
+  totalPrice: Number = 0;
 
   constructor(private shoppingCartService: ShoppingCartService) {}
 
   ngOnInit(): void {
     this.shoppingCartLines = this.shoppingCartService.getAll();
+    this.totalPrice = this.shoppingCartService.getTotalPrice();
 
     this.subscription = this.shoppingCartService.productsInCartChanged.subscribe(
       (shoppingCartLines: ShoppingCartLine[]) => {
         this.shoppingCartLines = shoppingCartLines;
+        this.totalPrice = shoppingCartLines.reduce(
+          (sum, item) => sum + item.product.price * item.quantity,
+          0
+        );
       }
     );
   }

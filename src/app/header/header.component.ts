@@ -30,7 +30,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
     this.shoppingCartSubscription = this.shoppingCartService.productsInCartChanged.subscribe(
       (products: ShoppingCartLine[]) => {
-        this.amountOfProductsInCart = products.length;
+        this.amountOfProductsInCart = products.reduce(
+          (sum, item) => sum + item.quantity,
+          0
+        );
       }
     );
   }

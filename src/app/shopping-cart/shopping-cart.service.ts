@@ -13,7 +13,9 @@ export class ShoppingCartService {
   public productsInCartChanged: Subject<ShoppingCartLine[]> = new Subject<
     ShoppingCartLine[]
   >();
+  public totalPriceChanged: Subject<Number> = new Subject<Number>();
   private productsInCart: ShoppingCartLine[] = [];
+  private totalPrice: Number = 0;
 
   constructor() {}
 
@@ -30,15 +32,32 @@ export class ShoppingCartService {
       const newLine = new ShoppingCartLine(product, 1);
       this.productsInCart.push(newLine);
     }
+    this.updateCart();
+  }
+
+  public updateCart() {
+    this.updateTotalPrice();
     this.productsInCartChanged.next(this.productsInCart.slice());
+    this.totalPriceChanged.next(this.totalPrice);
   }
 
   public delete(index: number) {
     this.productsInCart.splice(index, 1);
-    this.productsInCartChanged.next(this.productsInCart.slice());
+    this.updateCart();
   }
 
   public getAll(): ShoppingCartLine[] {
     return this.productsInCart.slice();
+  }
+
+  public getTotalPrice(): Number {
+    return this.totalPrice;
+  }
+
+  updateTotalPrice() {
+    this.totalPrice = this.productsInCart.reduce(
+      (sum, item) => sum + item.product.price,
+      0
+    );
   }
 }

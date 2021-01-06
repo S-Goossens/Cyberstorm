@@ -20,6 +20,10 @@ export class ShoppingCartListItemComponent implements OnInit {
     console.log(this.shoppingCartLine);
   }
 
+  onQuantityChange() {
+    this.shoppingCartService.updateCart();
+  }
+
   public removeFromCart() {
     console.log('verwijder');
     this.shoppingCartService.delete(this.index);
