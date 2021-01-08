@@ -51,6 +51,12 @@ export class RegistrationComponent implements OnInit {
           Validators.required,
           Validators.minLength(5),
         ]),
+        street: new FormControl(null, [Validators.required]),
+        number: new FormControl(null, [Validators.required]),
+        postalCode: new FormControl(null, [Validators.required]),
+        city: new FormControl(null, [Validators.required]),
+        region: new FormControl(null, [Validators.required]),
+        country: new FormControl(null, [Validators.required]),
       },
       {
         validators: this.passwordMatchValidator,

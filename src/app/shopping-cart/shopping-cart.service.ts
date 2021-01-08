@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { Product } from '../products/product.model';
+import { RequestService } from '../shared/services/request.service';
 
 export class ShoppingCartLine {
   constructor(public product: Product, public quantity: number) {}
@@ -17,7 +20,11 @@ export class ShoppingCartService {
   private productsInCart: ShoppingCartLine[] = [];
   private totalPrice: Number = 0;
 
-  constructor() {}
+  constructor(
+    private authService: AuthService,
+    private requestService: RequestService,
+    private router: Router
+  ) {}
 
   public add(product: Product) {
     let existingProduct: number;
@@ -54,9 +61,24 @@ export class ShoppingCartService {
     return this.totalPrice;
   }
 
+  public sendOrder() {
+    const user = this.authService.getUser();
+
+    if (user) {
+      console.log("we're sending the order");
+      return this.requestService.sendPostRequest('order', {
+        address: user.address._id,
+        cart: JSON.stringify(this.productsInCart),
+        totalPrice: this.totalPrice,
+      });
+    } else {
+      this.router.navigate(['/auth']);
+    }
+  }
+
   updateTotalPrice() {
     this.totalPrice = this.productsInCart.reduce(
-      (sum, item) => sum + item.product.price,
+      (sum, item) => sum + item.product.price * item.quantity,
       0
     );
   }

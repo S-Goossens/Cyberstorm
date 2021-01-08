@@ -30,6 +30,13 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     );
   }
 
+  onOrderClick() {
+    // send order
+    this.shoppingCartService.sendOrder().subscribe((result) => {
+      console.log(result);
+    });
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

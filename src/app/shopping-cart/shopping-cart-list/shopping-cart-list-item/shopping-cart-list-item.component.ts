@@ -21,6 +21,9 @@ export class ShoppingCartListItemComponent implements OnInit {
   }
 
   onQuantityChange() {
+    if (this.shoppingCartLine.quantity === 0) {
+      this.removeFromCart();
+    }
     this.shoppingCartService.updateCart();
   }
 
