@@ -66,14 +66,27 @@ export class ShoppingCartService {
 
     if (user) {
       console.log("we're sending the order");
-      return this.requestService.sendPostRequest('order', {
-        address: user.address._id,
-        cart: JSON.stringify(this.productsInCart),
-        totalPrice: this.totalPrice,
-      });
+      return this.requestService
+        .sendPostRequest('orders', {
+          address: user.address._id,
+          cart: JSON.stringify(this.productsInCart),
+          totalPrice: this.totalPrice,
+        })
+        .subscribe((result) => {
+          if (result) {
+            this.emptyCart();
+            return true;
+          }
+        });
     } else {
       this.router.navigate(['/auth']);
     }
+  }
+
+  emptyCart() {
+    this.productsInCart = [];
+    this.totalPrice = 0;
+    this.updateCart();
   }
 
   updateTotalPrice() {

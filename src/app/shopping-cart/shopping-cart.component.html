@@ -4,6 +4,12 @@
   </div>
 </div>
 
+<div class="row" *ngIf="alert">
+  <div class="alert alert-success">
+    {{ alert }}
+  </div>
+</div>
+
 <div class="row">
   <div class="col-xl"><app-shopping-cart-list></app-shopping-cart-list></div>
 </div>
@@ -13,6 +19,12 @@
     <h4>{{ totalPrice | currency: "EUR" }}</h4>
   </div>
   <div class="col-xl">
-    <a class="btn btn-primary" (click)="onOrderClick()">Order</a>
+    <button
+      class="btn btn-primary"
+      [disabled]="shoppingCartLines.length < 1"
+      (click)="onOrderClick()"
+    >
+      Order
+    </button>
   </div>
 </div>

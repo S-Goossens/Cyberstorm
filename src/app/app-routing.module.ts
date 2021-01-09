@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountComponent } from './account/account.component';
 import { AuthComponent } from './auth/auth.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
   },
   { path: 'cart', component: ShoppingCartComponent },
   { path: 'auth', component: AuthComponent },
+  { path: 'account', component: AccountComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],

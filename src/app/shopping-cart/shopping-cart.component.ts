@@ -12,6 +12,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   public shoppingCartLines: ShoppingCartLine[] = [];
   public subscription: Subscription;
   totalPrice: Number = 0;
+  alert: string = null;
 
   constructor(private shoppingCartService: ShoppingCartService) {}
 
@@ -32,9 +33,11 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
   onOrderClick() {
     // send order
-    this.shoppingCartService.sendOrder().subscribe((result) => {
-      console.log(result);
-    });
+    if (this.shoppingCartService.sendOrder()) {
+      this.alert = 'Order has been sent.';
+    } else {
+      this.alert = 'Something went wrong, please try again';
+    }
   }
 
   ngOnDestroy() {
