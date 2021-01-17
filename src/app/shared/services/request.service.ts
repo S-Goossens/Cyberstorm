@@ -21,4 +21,10 @@ export class RequestService {
       responseType: 'json',
     });
   }
+
+  sendPutRequest(endpoint: string, post_data: Object) {
+    return this.http.put(this.URL.concat(endpoint), post_data, {
+      responseType: 'json',
+    });
+  }
 }
