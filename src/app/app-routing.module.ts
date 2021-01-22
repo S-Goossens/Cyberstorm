@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
 import { RoleGuard } from './auth/role.guard';
+import { OrdersComponent } from './orders/orders.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
       },
     ],
   },
+  { path: 'orders', component: OrdersComponent },
   { path: 'cart', component: ShoppingCartComponent },
   { path: 'auth', component: AuthComponent },
 ];

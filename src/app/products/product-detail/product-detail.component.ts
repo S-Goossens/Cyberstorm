@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { ShoppingCartService } from 'src/app/shopping-cart/shopping-cart.service';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
@@ -12,13 +13,16 @@ import { ProductService } from '../product.service';
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
   private productSubscription: Subscription;
-  product: Product;
-  id: string;
+  public product: Product;
+  public id: string;
+  public isAdmin: boolean = false;
 
   constructor(
     private productService: ProductService,
     private shoppingCartService: ShoppingCartService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -30,10 +34,26 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
           this.product = response;
         });
     });
+
+    this.isAdmin = this.authService.isAdmin();
   }
 
   public onAddToCart() {
     this.shoppingCartService.add(this.product);
+  }
+
+  public onDelete() {
+    if (this.isAdmin) {
+      // delete product
+      this.productService.deleteProduct(this.id).subscribe(
+        (response) => {
+          this.router.navigate(['/products']);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    }
   }
 
   ngOnDestroy() {

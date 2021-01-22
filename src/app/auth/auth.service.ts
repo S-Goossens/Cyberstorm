@@ -157,6 +157,11 @@ export class AuthService {
     return null;
   }
 
+  isAdmin() {
+    const user = this.getUser();
+    return user.isAdmin;
+  }
+
   private handleAuthentication(
     email: string,
     userId: string,

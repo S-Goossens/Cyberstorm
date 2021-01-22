@@ -27,4 +27,10 @@ export class RequestService {
       responseType: 'json',
     });
   }
+
+  sendDeleteRequest(endpoint: string) {
+    return this.http.delete(this.URL.concat(endpoint), {
+      responseType: 'json',
+    });
+  }
 }

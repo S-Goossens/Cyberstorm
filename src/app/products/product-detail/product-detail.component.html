@@ -20,6 +20,14 @@
         >Add to cart</a
       >
     </p>
+    <p *ngIf="isAdmin">
+      <a [routerLink]="['/products', 'edit', id]" class="btn btn-primary"
+        >Edit</a
+      >
+    </p>
+    <p *ngIf="isAdmin">
+      <a (click)="onDelete()" class="btn btn-danger"> Delete </a>
+    </p>
     <ul>
       <li>Free returns within 30 days of purchase</li>
       <li>2 years warranty on all tech</li>

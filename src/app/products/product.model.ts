@@ -19,6 +19,6 @@ export class Product {
     this.description = description;
     this.price = price;
     this.type = type;
-    this.imgPath = 'http://localhost:8080/' + imgPath;
+    this.imgPath = imgPath;
   }
 }

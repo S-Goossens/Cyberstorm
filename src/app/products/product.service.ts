@@ -87,4 +87,12 @@ export class ProductService {
         })
       );
   }
+
+  deleteProduct(id: string) {
+    return this.requestService.sendDeleteRequest(this.endpoint + '/' + id).pipe(
+      map((response) => {
+        return response;
+      })
+    );
+  }
 }
