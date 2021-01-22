@@ -22,7 +22,7 @@ export class AuthService {
     firstName,
     lastName,
     password,
-    _,
+    confirmPassword,
     street,
     number,
     postalCode,
@@ -54,7 +54,8 @@ export class AuthService {
             resData['userId'],
             resData['address'],
             resData['token'],
-            +resData['expirationTime']
+            +resData['expirationTime'],
+            resData['isAdmin']
           );
         })
       );
@@ -74,7 +75,8 @@ export class AuthService {
             resData['userId'],
             resData['address'],
             resData['token'],
-            +resData['expirationTime']
+            +resData['expirationTime'],
+            resData['isAdmin']
           );
         })
       );
@@ -87,6 +89,7 @@ export class AuthService {
       address: Address;
       _token: string;
       _tokenExpirationDate: string;
+      isAdmin: boolean;
     } = JSON.parse(localStorage.getItem('userData'));
     if (!userData) {
       return;
@@ -97,7 +100,8 @@ export class AuthService {
       userData.id,
       userData.address,
       userData._token,
-      new Date(userData._tokenExpirationDate)
+      new Date(userData._tokenExpirationDate),
+      userData.isAdmin
     );
 
     if (loadedUser.token) {
@@ -132,6 +136,7 @@ export class AuthService {
       address: Address;
       _token: string;
       _tokenExpirationDate: string;
+      isAdmin: boolean;
     } = JSON.parse(localStorage.getItem('userData'));
     if (!userData) {
       return;
@@ -142,7 +147,8 @@ export class AuthService {
       userData.id,
       userData.address,
       userData._token,
-      new Date(userData._tokenExpirationDate)
+      new Date(userData._tokenExpirationDate),
+      userData.isAdmin
     );
 
     if (loadedUser.token) {
@@ -151,15 +157,28 @@ export class AuthService {
     return null;
   }
 
+  isAdmin() {
+    const user = this.getUser();
+    return user.isAdmin;
+  }
+
   private handleAuthentication(
     email: string,
     userId: string,
     address: Address,
     token: string,
-    expiresIn: number
+    expiresIn: number,
+    isAdmin: boolean
   ) {
     const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000);
-    const user = new User(email, userId, address, token, expirationDate);
+    const user = new User(
+      email,
+      userId,
+      address,
+      token,
+      expirationDate,
+      isAdmin
+    );
     this.user.next(user);
     this.autoLogout(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));

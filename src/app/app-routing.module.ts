@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccountComponent } from './account/account.component';
 import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
+import { RoleGuard } from './auth/role.guard';
+import { OrdersComponent } from './orders/orders.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
+import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
@@ -14,12 +17,25 @@ const appRoutes: Routes = [
     component: ProductsComponent,
     children: [
       { path: '', component: ProductListComponent },
-      { path: ':id', component: ProductDetailComponent },
+      {
+        path: 'new',
+        canActivate: [RoleGuard],
+        component: ProductEditComponent,
+      },
+      {
+        path: ':id',
+        component: ProductDetailComponent,
+      },
+      {
+        path: 'edit/:id',
+        canActivate: [RoleGuard],
+        component: ProductEditComponent,
+      },
     ],
   },
+  { path: 'orders', component: OrdersComponent },
   { path: 'cart', component: ShoppingCartComponent },
   { path: 'auth', component: AuthComponent },
-  { path: 'account', component: AccountComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],

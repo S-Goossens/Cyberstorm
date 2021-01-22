@@ -10,7 +10,7 @@ import { RequestService } from './shared/services/request.service';
 import { AuthModule } from './auth/auth.module';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { AccountModule } from './account/account.module';
+import { OrdersModule } from './orders/orders.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -21,7 +21,7 @@ import { AccountModule } from './account/account.module';
     ShoppingCartModule,
     AuthModule,
     AppRoutingModule,
-    AccountModule,
+    OrdersModule,
   ],
   providers: [
     RequestService,

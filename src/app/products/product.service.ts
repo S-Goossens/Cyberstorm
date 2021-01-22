@@ -30,8 +30,68 @@ export class ProductService {
     return this.requestService.sendGetRequest(this.endpoint + '/' + id).pipe(
       map((response) => {
         if (response['product']) {
+          console.log(response['product']);
           return response['product'] as Product;
         }
+      })
+    );
+  }
+
+  saveProduct(
+    name: string,
+    imgPath: string,
+    description: string,
+    price: number,
+    type: string
+  ) {
+    return this.requestService
+      .sendPostRequest(this.endpoint, {
+        name: name,
+        imgPath: imgPath,
+        description: description,
+        price: price,
+        type: type,
+      })
+      .pipe(
+        map((response) => {
+          if (response['product']) {
+            console.log(response['product']);
+            return response['product'] as Product;
+          }
+        })
+      );
+  }
+
+  updateProduct(
+    id: string,
+    name: string,
+    imgPath: string,
+    description: string,
+    price: number,
+    type: string
+  ) {
+    return this.requestService
+      .sendPutRequest(this.endpoint + '/' + id, {
+        name: name,
+        imgPath: imgPath,
+        description: description,
+        price: price,
+        type: type,
+      })
+      .pipe(
+        map((response) => {
+          if (response['product']) {
+            console.log(response['product']);
+            return response['product'] as Product;
+          }
+        })
+      );
+  }
+
+  deleteProduct(id: string) {
+    return this.requestService.sendDeleteRequest(this.endpoint + '/' + id).pipe(
+      map((response) => {
+        return response;
       })
     );
   }

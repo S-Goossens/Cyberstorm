@@ -5,6 +5,8 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductThumbnailComponent } from './product-thumbnail/product-thumbnail.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { ProductEditComponent } from './product-edit/product-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { AppRoutingModule } from '../app-routing.module';
     ProductListComponent,
     ProductThumbnailComponent,
     ProductDetailComponent,
+    ProductEditComponent,
   ],
-  imports: [CommonModule, AppRoutingModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, AppRoutingModule],
+  exports: [ProductEditComponent],
 })
 export class ProductsModule {}

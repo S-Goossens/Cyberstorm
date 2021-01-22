@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 
@@ -10,9 +11,13 @@ import { ProductService } from '../product.service';
 })
 export class ProductListComponent implements OnInit, OnDestroy {
   private productSubscription: Subscription;
-  products: Product[];
+  public products: Product[];
+  public isAdmin: boolean = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.productSubscription = this.productService
@@ -21,6 +26,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.products = response;
         console.log(this.products);
       });
+    this.isAdmin = this.authService.isAdmin();
   }
 
   ngOnDestroy() {
