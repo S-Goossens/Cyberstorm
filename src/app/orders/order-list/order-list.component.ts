@@ -11,6 +11,7 @@ import { OrderService } from '../order.service';
 export class OrderListComponent implements OnInit, OnDestroy {
   public orders: Order[];
   private orderSubscription: Subscription;
+  private orderChangedSubscription: Subscription;
 
   constructor(private orderService: OrderService) {}
 
@@ -20,6 +21,16 @@ export class OrderListComponent implements OnInit, OnDestroy {
       .subscribe((response) => {
         this.orders = response;
       });
+
+    this.orderChangedSubscription = this.orderService.ordersChanged.subscribe(
+      (_) => {
+        this.orderSubscription = this.orderService
+          .getOrders()
+          .subscribe((response) => {
+            this.orders = response;
+          });
+      }
+    );
   }
 
   ngOnDestroy() {
