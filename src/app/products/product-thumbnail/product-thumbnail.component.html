@@ -1,6 +1,11 @@
 <div routerLink="{{ product._id }}" class="card link">
   <div class="card-body">
-    <img class="card-img-top" src="{{ product.imgPath }}" />
+    <div class="embed-responsive embed-responsive-1by1">
+      <img
+        class="card-img-top embed-responsive-item"
+        src="{{ product.imgPath }}"
+      />
+    </div>
     <h5 class="card-title">{{ product.name }}</h5>
     <h5 class="card-text price">{{ product.price | currency: "EUR" }}</h5>
   </div>

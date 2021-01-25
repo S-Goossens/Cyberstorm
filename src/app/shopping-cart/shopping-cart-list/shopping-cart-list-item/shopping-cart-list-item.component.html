@@ -1,15 +1,21 @@
-<div *ngIf="shoppingCartLine">
-  <p>
+<ng-container *ngIf="shoppingCartLine">
+  <td>
     {{ shoppingCartLine.product.name }}
+  </td>
+  <td>
     <input
       type="number"
       [(ngModel)]="shoppingCartLine.quantity"
       (change)="onQuantityChange()"
     />
+  </td>
+  <td>
     {{
       shoppingCartLine.quantity * shoppingCartLine.product.price
         | currency: "EUR"
     }}
+  </td>
+  <td>
     <button class="btn btn-danger" (click)="removeFromCart()">Delete</button>
-  </p>
-</div>
+  </td>
+</ng-container>
