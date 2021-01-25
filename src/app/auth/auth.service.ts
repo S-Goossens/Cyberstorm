@@ -159,7 +159,10 @@ export class AuthService {
 
   isAdmin() {
     const user = this.getUser();
-    return user.isAdmin;
+    if (user) {
+      return user.isAdmin;
+    }
+    return false;
   }
 
   private handleAuthentication(
@@ -186,7 +189,6 @@ export class AuthService {
 
   private handleError(errorRes: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
-    console.log(errorRes);
     if (!errorRes.error || !errorRes.error.message) {
       return throwError(errorMessage);
     }

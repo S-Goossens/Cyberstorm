@@ -65,7 +65,6 @@ export class ShoppingCartService {
     const user = this.authService.getUser();
 
     if (user) {
-      console.log("we're sending the order");
       return this.requestService
         .sendPostRequest('orders', {
           address: user.address._id,

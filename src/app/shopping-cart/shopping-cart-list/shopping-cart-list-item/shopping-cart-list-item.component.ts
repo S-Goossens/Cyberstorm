@@ -16,9 +16,7 @@ export class ShoppingCartListItemComponent implements OnInit {
 
   constructor(private shoppingCartService: ShoppingCartService) {}
 
-  ngOnInit(): void {
-    console.log(this.shoppingCartLine);
-  }
+  ngOnInit(): void {}
 
   onQuantityChange() {
     if (this.shoppingCartLine.quantity === 0) {
@@ -28,7 +26,6 @@ export class ShoppingCartListItemComponent implements OnInit {
   }
 
   public removeFromCart() {
-    console.log('verwijder');
     this.shoppingCartService.delete(this.index);
   }
 }

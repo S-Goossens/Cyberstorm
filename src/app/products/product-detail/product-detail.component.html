@@ -1,4 +1,9 @@
 <div class="row" *ngIf="product">
+  <div class="col-sm-12" *ngIf="error" (click)="dismissError()">
+    <div class="alert alert-danger">
+      {{ error }}
+    </div>
+  </div>
   <div class="col-sm-12 col-md-7">
     <img src="{{ product.imgPath }}" alt="{{ product.name }}" />
   </div>

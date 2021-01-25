@@ -16,7 +16,6 @@ export class OrderService {
   public getOrders() {
     return this.requestService.sendGetRequest(this.endpoint).pipe(
       map((response) => {
-        console.log(response);
         const orderArray: Order[] = [];
         for (const order in response['orders']) {
           orderArray.push(response['orders'][order]);
@@ -29,7 +28,6 @@ export class OrderService {
   public getOrder(id: string) {
     return this.requestService.sendGetRequest(this.endpoint + '/' + id).pipe(
       map((response) => {
-        console.log(response);
         return response['order'] as Order;
       })
     );

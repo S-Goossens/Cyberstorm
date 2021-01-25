@@ -36,7 +36,6 @@ export class ProductEditComponent implements OnInit, OnDestroy {
           .getProduct(this.id)
           .subscribe((product) => {
             this.product = product;
-            console.log(this.product);
             this.loading = false;
           });
       }
@@ -55,7 +54,6 @@ export class ProductEditComponent implements OnInit, OnDestroy {
           form.value['type']
         )
         .subscribe((response) => {
-          console.log(response);
           this.router.navigate(['/']);
         });
     } else {
@@ -68,7 +66,6 @@ export class ProductEditComponent implements OnInit, OnDestroy {
           form.value['type']
         )
         .subscribe((response) => {
-          console.log(response);
           this.router.navigate(['/']);
         });
     }

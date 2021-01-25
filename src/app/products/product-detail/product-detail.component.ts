@@ -17,6 +17,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   public id: string;
   public isAdmin: boolean = false;
 
+  public error: string = null;
+
   constructor(
     private productService: ProductService,
     private shoppingCartService: ShoppingCartService,
@@ -50,10 +52,15 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
           this.router.navigate(['/products']);
         },
         (err) => {
-          console.log(err);
+          // display error
+          this.error = err.message;
         }
       );
     }
+  }
+
+  public dismissError() {
+    this.error = null;
   }
 
   ngOnDestroy() {

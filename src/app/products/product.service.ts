@@ -16,7 +16,6 @@ export class ProductService {
   getProducts() {
     return this.requestService.sendGetRequest(this.endpoint).pipe(
       map((response) => {
-        console.log(response);
         const productsArray: Product[] = [];
         for (const product in response['products']) {
           productsArray.push(response['products'][product]);
@@ -30,7 +29,6 @@ export class ProductService {
     return this.requestService.sendGetRequest(this.endpoint + '/' + id).pipe(
       map((response) => {
         if (response['product']) {
-          console.log(response['product']);
           return response['product'] as Product;
         }
       })
@@ -55,7 +53,6 @@ export class ProductService {
       .pipe(
         map((response) => {
           if (response['product']) {
-            console.log(response['product']);
             return response['product'] as Product;
           }
         })
@@ -81,7 +78,6 @@ export class ProductService {
       .pipe(
         map((response) => {
           if (response['product']) {
-            console.log(response['product']);
             return response['product'] as Product;
           }
         })

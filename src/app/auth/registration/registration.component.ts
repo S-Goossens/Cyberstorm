@@ -24,11 +24,9 @@ export class RegistrationComponent implements OnInit {
   onSubmit() {
     this.authService.signup(this.registrationForm.value).subscribe(
       (response) => {
-        console.log(response);
         this.router.navigate(['/products']);
       },
       (errorMessage) => {
-        console.log(errorMessage);
         this.error = errorMessage;
       }
     );

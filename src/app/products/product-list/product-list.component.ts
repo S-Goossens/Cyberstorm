@@ -24,7 +24,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
       .getProducts()
       .subscribe((response) => {
         this.products = response;
-        console.log(this.products);
       });
     this.isAdmin = this.authService.isAdmin();
   }
