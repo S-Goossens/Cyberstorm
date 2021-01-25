@@ -6,7 +6,7 @@ import {
 } from '../../shopping-cart.service';
 
 @Component({
-  selector: 'app-shopping-cart-list-item',
+  selector: '[app-shopping-cart-list-item]',
   templateUrl: './shopping-cart-list-item.component.html',
   styleUrls: ['./shopping-cart-list-item.component.scss'],
 })
