@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ export class RequestService {
   URL: string;
 
   constructor(private http: HttpClient) {
-    this.URL = 'http://localhost:8080/';
+    this.URL = environment.server;
   }
 
   sendGetRequest(endpoint: string) {
