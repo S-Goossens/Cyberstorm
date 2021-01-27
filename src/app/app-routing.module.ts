@@ -33,7 +33,7 @@ const appRoutes: Routes = [
       },
     ],
   },
-  { path: 'orders', component: OrdersComponent },
+  { path: 'orders', canActivate: [RoleGuard], component: OrdersComponent },
   { path: 'cart', component: ShoppingCartComponent },
   { path: 'auth', component: AuthComponent },
 ];

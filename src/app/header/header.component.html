@@ -22,12 +22,12 @@
         </li>
         <!-- <li class="nav-item">
           <a href="#" class="nav-link">Builder</a></li> -->
-        <li class="nav-item" routerLinkActive="active">
+        <!-- <li class="nav-item" routerLinkActive="active">
           <a class="nav-link">Services</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link">Contact</a>
-        </li>
+        </li> -->
       </ul>
       <ul class="navbar-nav ml-auto">
         <!-- <li class="nav-item" id="searchBar">
@@ -40,7 +40,7 @@
             />
           </form>
         </li> -->
-        <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
+        <li class="nav-item" routerLinkActive="active" *ngIf="isAdmin">
           <a routerLink="orders" class="nav-link">Orders</a>
         </li>
         <li class="nav-item" routerLinkActive="active">

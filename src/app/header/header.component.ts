@@ -15,6 +15,7 @@ import {
 export class HeaderComponent implements OnInit, OnDestroy {
   public amountOfProductsInCart: number = 0;
   isAuthenticated = false;
+  isAdmin = false;
   private userSubscription: Subscription;
   private shoppingCartSubscription: Subscription;
 
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.amountOfProductsInCart = this.shoppingCartService.getAll().length;
     this.userSubscription = this.authService.user.subscribe((user) => {
       this.isAuthenticated = !!user;
+      this.isAdmin = user.isAdmin;
     });
     this.shoppingCartSubscription = this.shoppingCartService.productsInCartChanged.subscribe(
       (products: ShoppingCartLine[]) => {
