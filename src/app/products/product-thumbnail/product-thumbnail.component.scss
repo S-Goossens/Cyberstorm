@@ -2,6 +2,11 @@
   background-color: var(--secondary);
 
   min-height: 300px;
+  width: 100%;
+
+  .card-body {
+    padding-bottom: 0px;
+  }
 
   .price {
     color: red;

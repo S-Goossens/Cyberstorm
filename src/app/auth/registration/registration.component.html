@@ -29,6 +29,15 @@
       formControlName="lastName"
     />
   </div>
+  <div
+    class="alert alert-danger"
+    *ngIf="
+      registrationForm.errors?.mismatch &&
+      registrationForm.controls['confirmPassword'].touched
+    "
+  >
+    Passwords don't match
+  </div>
   <div class="form-group">
     <label for="password">Password</label>
     <input
@@ -46,15 +55,6 @@
       class="form-control"
       formControlName="confirmPassword"
     />
-  </div>
-  <div
-    class="alert alert-danger"
-    *ngIf="
-      registrationForm.errors?.mismatch &&
-      registrationForm.controls['confirmPassword'].touched
-    "
-  >
-    Passwords don't match
   </div>
   <div class="form-group">
     <label for="street">Street</label>
