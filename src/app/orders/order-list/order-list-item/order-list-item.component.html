@@ -1,5 +1,5 @@
 <ng-container>
-  <td>{{ order._id }}</td>
+  <td routerLink="{{ order._id }}" class="idField">{{ order._id }}</td>
   <td>{{ order.createdAt | date }}</td>
   <td>{{ order.totalPrice | currency: "EUR" }}</td>
   <td *ngIf="order.status !== 'sent'">

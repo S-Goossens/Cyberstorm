@@ -5,6 +5,7 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { OrderListItemComponent } from './order-list/order-list-item/order-list-item.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,6 @@ import { FormsModule } from '@angular/forms';
     OrderListItemComponent,
     OrderDetailComponent,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, AppRoutingModule],
 })
 export class OrdersModule {}

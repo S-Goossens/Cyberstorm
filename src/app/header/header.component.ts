@@ -28,7 +28,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.amountOfProductsInCart = this.shoppingCartService.getAll().length;
     this.userSubscription = this.authService.user.subscribe((user) => {
       this.isAuthenticated = !!user;
-      this.isAdmin = user.isAdmin;
+      if (user) {
+        this.isAdmin = user.isAdmin;
+      }
     });
     this.shoppingCartSubscription = this.shoppingCartService.productsInCartChanged.subscribe(
       (products: ShoppingCartLine[]) => {

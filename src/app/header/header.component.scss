@@ -1,14 +1,14 @@
-#navbar {
-  padding-left: var(--navbar-padding);
-  padding-right: var(--navbar-padding);
-  margin-bottom: var(--navbar-top-margin);
-}
 nav {
   height: var(--navbar-height);
   border: var(--navbar-border);
   background-color: transparent;
-  margin-top: var(--navbar-top-margin);
   padding: 0;
+  clear: both;
+  position: sticky;
+  width: 80%;
+  left: 0;
+  right: 0;
+  margin: var(--navbar-top-margin) auto;
 
   .navbar-brand {
     margin: 0;

@@ -1,30 +1,32 @@
-<div class="row">
-  <div class="col-xl">
-    <h1>Shopping cart</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xl">
+      <h1>Shopping cart</h1>
+    </div>
   </div>
-</div>
 
-<div class="row" *ngIf="alert">
-  <div class="alert alert-success">
-    {{ alert }}
+  <div class="row" *ngIf="alert">
+    <div class="alert alert-success">
+      {{ alert }}
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-xl"><app-shopping-cart-list></app-shopping-cart-list></div>
-</div>
-
-<div class="row">
-  <div class="col-xl">
-    <h4>{{ totalPrice | currency: "EUR" }}</h4>
+  <div class="row">
+    <div class="col-xl"><app-shopping-cart-list></app-shopping-cart-list></div>
   </div>
-  <div class="col-xl buttonCol">
-    <button
-      class="btn btn-primary"
-      [disabled]="shoppingCartLines.length < 1"
-      (click)="onOrderClick()"
-    >
-      Order
-    </button>
+
+  <div class="row">
+    <div class="col-xl">
+      <h4>{{ totalPrice | currency: "EUR" }}</h4>
+    </div>
+    <div class="col-xl buttonCol">
+      <button
+        class="btn btn-primary"
+        [disabled]="shoppingCartLines.length < 1"
+        (click)="onOrderClick()"
+      >
+        Order
+      </button>
+    </div>
   </div>
 </div>

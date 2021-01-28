@@ -1,36 +1,49 @@
-<div id="navbar" class="container-fluid">
-  <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
-    <a class="navbar-brand"
-      ><img src="./assets/img/Logo.png" alt="cyberstorm logo"
-    /></a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark">
+  <a class="navbar-brand" routerLink="/"
+    ><img src="./assets/img/Logo.png" alt="cyberstorm logo"
+  /></a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item" routerLinkActive="active">
-          <a routerLink="products" class="nav-link">Products</a>
-        </li>
-        <!-- <li class="nav-item">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li
+        class="nav-item"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a routerLink="/" class="nav-link">Home</a>
+      </li>
+      <li
+        class="nav-item"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a routerLink="products" class="nav-link">Products</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" *ngIf="isAdmin">
+        <a routerLink="products/new" class="nav-link">Add Product</a>
+      </li>
+      <!-- <li class="nav-item">
           <a href="#" class="nav-link">Builder</a></li> -->
-        <!-- <li class="nav-item" routerLinkActive="active">
+      <!-- <li class="nav-item" routerLinkActive="active">
           <a class="nav-link">Services</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link">Contact</a>
         </li> -->
-      </ul>
-      <ul class="navbar-nav ml-auto">
-        <!-- <li class="nav-item" id="searchBar">
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <!-- <li class="nav-item" id="searchBar">
           <form class="form-inline my-2 my-lg-0">
             <input
               class="form-control mr-sm-2"
@@ -40,21 +53,20 @@
             />
           </form>
         </li> -->
-        <li class="nav-item" routerLinkActive="active" *ngIf="isAdmin">
-          <a routerLink="orders" class="nav-link">Orders</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a routerLink="cart" class="nav-link"
-            >Cart ({{ amountOfProductsInCart }})</a
-          >
-        </li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="!isAuthenticated">
-          <a routerLink="auth" class="nav-link">Login</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
-          <a (click)="onLogout()" class="nav-link">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div>
+      <li class="nav-item" routerLinkActive="active" *ngIf="isAdmin">
+        <a routerLink="orders" class="nav-link">Orders</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a routerLink="cart" class="nav-link"
+          >Cart ({{ amountOfProductsInCart }})</a
+        >
+      </li>
+      <li class="nav-item" routerLinkActive="active" *ngIf="!isAuthenticated">
+        <a routerLink="auth" class="nav-link">Login</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
+        <a (click)="onLogout()" class="nav-link">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>

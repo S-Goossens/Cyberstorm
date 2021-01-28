@@ -1,1 +1,9 @@
-<p>order-detail works!</p>
+<div class="row" *ngIf="order">
+  <div class="jumbotron">
+    <h3>Order: {{ order._id }}</h3>
+    <p>Ordered at: {{ order.createdAt | date }}</p>
+    <p>{{ order.orderLines }}</p>
+    <p>Price: {{ order.totalPrice | currency: "EUR" }}</p>
+    <p>Status: {{ order.status }}</p>
+  </div>
+</div>

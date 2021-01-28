@@ -11,9 +11,10 @@ import { AuthModule } from './auth/auth.module';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { OrdersModule } from './orders/orders.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, HomeComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
