@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Order } from '../order.model';
 import { OrderService } from '../order.service';
 
@@ -10,12 +11,22 @@ import { OrderService } from '../order.service';
 })
 export class OrderListComponent implements OnInit, OnDestroy {
   public orders: Order[];
+  public isAdmin: boolean = false;
   private orderSubscription: Subscription;
   private orderChangedSubscription: Subscription;
+  private userSubscription: Subscription;
 
-  constructor(private orderService: OrderService) {}
+  constructor(
+    private orderService: OrderService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
+    this.userSubscription = this.authService.user.subscribe((user) => {
+      if (user) {
+        this.isAdmin = user.isAdmin;
+      }
+    });
     this.orderSubscription = this.orderService
       .getOrders()
       .subscribe((response) => {
@@ -36,5 +47,6 @@ export class OrderListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.orderSubscription.unsubscribe();
     this.orderChangedSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 }

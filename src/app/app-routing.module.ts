@@ -38,7 +38,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'orders',
-    canActivate: [RoleGuard],
+    canActivate: [AuthGuard],
     component: OrdersComponent,
     children: [
       { path: '', component: OrderListComponent },

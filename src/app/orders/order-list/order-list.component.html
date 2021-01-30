@@ -1,5 +1,6 @@
 <div class="row">
-  <h1>Orders</h1>
+  <h1 *ngIf="isAdmin">Orders</h1>
+  <h1 *ngIf="!isAdmin">Your orders</h1>
   <table class="table">
     <thead>
       <tr>
@@ -7,11 +8,16 @@
         <th scope="col">Date</th>
         <th scope="col">Price</th>
         <th scope="col">Status</th>
-        <th scope="col">&nbsp;</th>
+        <th scope="col" *ngIf="isAdmin">&nbsp;</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let order of orders" [order]="order" app-order-list-item></tr>
+      <tr
+        *ngFor="let order of orders"
+        [order]="order"
+        [isAdmin]="isAdmin"
+        app-order-list-item
+      ></tr>
     </tbody>
   </table>
 </div>

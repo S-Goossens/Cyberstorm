@@ -17,6 +17,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   constructor(private shoppingCartService: ShoppingCartService) {}
 
   ngOnInit(): void {
+    this.shoppingCartService.getShoppingCartLines();
     this.shoppingCartLines = this.shoppingCartService.getAll();
     this.totalPrice = this.shoppingCartService.getTotalPrice();
 
@@ -41,6 +42,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

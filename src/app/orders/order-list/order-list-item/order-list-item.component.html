@@ -2,7 +2,7 @@
   <td routerLink="{{ order._id }}" class="idField">{{ order._id }}</td>
   <td>{{ order.createdAt | date }}</td>
   <td>{{ order.totalPrice | currency: "EUR" }}</td>
-  <td *ngIf="order.status !== 'sent'">
+  <td *ngIf="order.status !== 'sent' && isAdmin">
     <!-- TODO: onchange update status on db-->
     <select
       class="form-control"
@@ -14,8 +14,8 @@
       <option value="sent">Sent</option>
     </select>
   </td>
-  <td *ngIf="order.status === 'sent'">{{ order.status }}</td>
-  <td>
+  <td *ngIf="order.status === 'sent' || !isAdmin">{{ order.status }}</td>
+  <td *ngIf="isAdmin">
     <button type="button" class="btn btn-danger" (click)="onDelete()">
       Delete
     </button>

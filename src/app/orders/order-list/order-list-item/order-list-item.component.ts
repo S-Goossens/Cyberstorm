@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Order } from '../../order.model';
 import { OrderService } from '../../order.service';
 
@@ -9,12 +11,13 @@ import { OrderService } from '../../order.service';
 })
 export class OrderListItemComponent implements OnInit {
   @Input() order: Order;
+  @Input() isAdmin = false;
 
   constructor(private orderService: OrderService) {}
 
   ngOnInit(): void {}
 
-  onStatusUpdate() {
+  public onStatusUpdate(): void {
     // update order
     this.orderService
       .updateOrder(this.order._id, this.order.totalPrice, this.order.status)
@@ -23,7 +26,7 @@ export class OrderListItemComponent implements OnInit {
       });
   }
 
-  onDelete() {
+  public onDelete(): void {
     this.orderService.deleteOrder(this.order._id).subscribe(
       (response) => {
         //display message

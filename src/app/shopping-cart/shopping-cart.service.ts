@@ -26,6 +26,28 @@ export class ShoppingCartService {
     private router: Router
   ) {}
 
+  /**
+   * Gets the shoppingcartlines from localstorage
+   */
+  public getShoppingCartLines(): void {
+    try {
+      const cartLines = localStorage.getItem('shoppingCartLines');
+      const lines = JSON.parse(<string>cartLines) as ShoppingCartLine[];
+      if (lines) {
+        this.productsInCart = lines;
+        this.updateTotalPrice();
+      } else {
+        this.productsInCart = [];
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  /**
+   * Adds a product to the shopping cart
+   * @param product Product to add to the shopping cart
+   */
   public add(product: Product) {
     let existingProduct: number;
     if (this.productsInCart.length > 0) {
@@ -42,25 +64,46 @@ export class ShoppingCartService {
     this.updateCart();
   }
 
+  /**
+   * Updates the value for totalPrice, emits subjects and saves the cart to localstorage
+   */
   public updateCart() {
     this.updateTotalPrice();
     this.productsInCartChanged.next(this.productsInCart.slice());
     this.totalPriceChanged.next(this.totalPrice);
+    localStorage.setItem(
+      'shoppingCartLines',
+      JSON.stringify(this.productsInCart)
+    );
   }
 
+  /**
+   * Removes an item from the shopping cart
+   * @param index Index of shoppingCartLine
+   */
   public delete(index: number) {
     this.productsInCart.splice(index, 1);
     this.updateCart();
   }
 
+  /**
+   * Gets all the shoppingCartLines
+   */
   public getAll(): ShoppingCartLine[] {
+    this.getShoppingCartLines();
     return this.productsInCart.slice();
   }
 
+  /**
+   * Gets the totalprice of shopping cart
+   */
   public getTotalPrice(): Number {
     return this.totalPrice;
   }
 
+  /**
+   * Sends the order
+   */
   public sendOrder() {
     const user = this.authService.getUser();
 
@@ -82,13 +125,19 @@ export class ShoppingCartService {
     }
   }
 
-  emptyCart() {
+  /**
+   * Empties the cart
+   */
+  public emptyCart() {
     this.productsInCart = [];
     this.totalPrice = 0;
     this.updateCart();
   }
 
-  updateTotalPrice() {
+  /**
+   * Updates the totalPrice variable
+   */
+  private updateTotalPrice() {
     this.totalPrice = this.productsInCart.reduce(
       (sum, item) => sum + item.product.price * item.quantity,
       0
